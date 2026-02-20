@@ -1,5 +1,5 @@
 /**
- * Export command for openclaw-backup
+ * Export command for openclaw-packager
  */
 
 import * as fs from 'fs';

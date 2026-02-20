@@ -1,5 +1,5 @@
 /**
- * Secret detection and stripping for openclaw-backup
+ * Secret detection and stripping for openclaw-packager
  */
 export interface SecretsTemplate {
     _instructions: string;

@@ -1,5 +1,5 @@
 /**
- * Manifest types and validation for openclaw-backup exports
+ * Manifest types and validation for openclaw-packager exports
  */
 export interface ManifestIncludes {
     workspace: boolean;

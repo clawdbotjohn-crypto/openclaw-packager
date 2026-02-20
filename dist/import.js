@@ -1,6 +1,6 @@
 "use strict";
 /**
- * Import command for openclaw-backup
+ * Import command for openclaw-packager
  */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -70,8 +70,8 @@ async function runImport(file, options) {
     // Validate manifest
     const manifestEntry = zip.getEntry('manifest.json');
     if (!manifestEntry) {
-        logger.error(chalk_1.default.red('✗ Not a valid openclaw-backup export'));
-        logger.error('  Missing manifest.json - this file was not created by openclaw-backup');
+        logger.error(chalk_1.default.red('✗ Not a valid openclaw-packager export'));
+        logger.error('  Missing manifest.json - this file was not created by openclaw-packager');
         process.exit(1);
     }
     let manifest;

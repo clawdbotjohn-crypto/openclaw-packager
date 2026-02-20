@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * openclaw-backup - Export and import OpenClaw bot configurations
+ * openclaw-packager - Export and import OpenClaw bot configurations
  */
 
 import { Command } from 'commander';
@@ -13,7 +13,7 @@ import { runInspect } from './inspect';
 const program = new Command();
 
 program
-  .name('openclaw-backup')
+  .name('openclaw-packager')
   .description('Export and import OpenClaw bot configurations')
   .version('0.1.0');
 

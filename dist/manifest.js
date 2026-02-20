@@ -1,6 +1,6 @@
 "use strict";
 /**
- * Manifest types and validation for openclaw-backup exports
+ * Manifest types and validation for openclaw-packager exports
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createManifest = createManifest;
@@ -12,7 +12,7 @@ exports.formatSize = formatSize;
 function createManifest(overrides = {}) {
     return {
         version: '1.0.0',
-        tool: 'openclaw-backup',
+        tool: 'openclaw-packager',
         exportedAt: new Date().toISOString(),
         platform: `${process.platform}-${process.arch}`,
         nodeVersion: process.version,
@@ -42,7 +42,7 @@ function validateManifest(data) {
     }
     const m = data;
     return (typeof m.version === 'string' &&
-        m.tool === 'openclaw-backup' &&
+        m.tool === 'openclaw-packager' &&
         typeof m.exportedAt === 'string' &&
         typeof m.includes === 'object' &&
         m.includes !== null);

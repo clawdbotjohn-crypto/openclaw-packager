@@ -1,19 +1,19 @@
-# openclaw-backup
+# openclaw-packager
 
 Export and import OpenClaw bot configurations. Enables migration between machines, disaster recovery, and sharing setups (with secrets stripped).
 
 ## Installation
 
 ```bash
-npm install -g openclaw-backup
+npm install -g openclaw-packager
 ```
 
 Or run locally:
 ```bash
-cd openclaw-backup
+cd openclaw-packager
 npm install
 npm run build
-npm link  # Makes 'openclaw-backup' available globally
+npm link  # Makes 'openclaw-packager' available globally
 ```
 
 ## Commands
@@ -23,21 +23,21 @@ npm link  # Makes 'openclaw-backup' available globally
 Export your OpenClaw configuration to a zip file:
 
 ```bash
-openclaw-backup export                          # Default export (secrets stripped)
-openclaw-backup export -o backup.zip            # Specify output file
-openclaw-backup export --dry-run                # Preview what would be exported
-openclaw-backup export --no-workspace           # Exclude workspace files
-openclaw-backup export --no-memory              # Exclude memory files
-openclaw-backup export --agent main worker      # Export only specific agents
-openclaw-backup export --auth                   # Include auth profiles/credentials
-openclaw-backup export --include-secrets        # Include actual secret values (dangerous!)
-openclaw-backup export --include-projects       # Include workspace/projects/ (large, excluded by default)
-openclaw-backup export --stdout > backup.zip    # Pipe to stdout (for SSH)
+openclaw-packager export                          # Default export (secrets stripped)
+openclaw-packager export -o backup.zip            # Specify output file
+openclaw-packager export --dry-run                # Preview what would be exported
+openclaw-packager export --no-workspace           # Exclude workspace files
+openclaw-packager export --no-memory              # Exclude memory files
+openclaw-packager export --agent main worker      # Export only specific agents
+openclaw-packager export --auth                   # Include auth profiles/credentials
+openclaw-packager export --include-secrets        # Include actual secret values (dangerous!)
+openclaw-packager export --include-projects       # Include workspace/projects/ (large, excluded by default)
+openclaw-packager export --stdout > backup.zip    # Pipe to stdout (for SSH)
 ```
 
 **SSH piping example:**
 ```bash
-ssh pi "openclaw-backup export --stdout" > pi-backup.zip
+ssh pi "openclaw-packager export --stdout" > pi-backup.zip
 ```
 
 ### Import
@@ -45,12 +45,12 @@ ssh pi "openclaw-backup export --stdout" > pi-backup.zip
 Import a backup into an OpenClaw installation:
 
 ```bash
-openclaw-backup import backup.zip                       # Import with merge (preserve existing)
-openclaw-backup import backup.zip --dry-run             # Preview what would change
-openclaw-backup import backup.zip --force               # Overwrite all existing files
-openclaw-backup import backup.zip --target ~/.openclaw-dev  # Specify target directory
-openclaw-backup import backup.zip --skip-workspace      # Skip workspace files
-openclaw-backup import backup.zip --skip-cron           # Skip cron jobs
+openclaw-packager import backup.zip                       # Import with merge (preserve existing)
+openclaw-packager import backup.zip --dry-run             # Preview what would change
+openclaw-packager import backup.zip --force               # Overwrite all existing files
+openclaw-packager import backup.zip --target ~/.openclaw-dev  # Specify target directory
+openclaw-packager import backup.zip --skip-workspace      # Skip workspace files
+openclaw-packager import backup.zip --skip-cron           # Skip cron jobs
 ```
 
 ### Inspect
@@ -58,7 +58,7 @@ openclaw-backup import backup.zip --skip-cron           # Skip cron jobs
 View contents of a backup without importing:
 
 ```bash
-openclaw-backup inspect backup.zip
+openclaw-packager inspect backup.zip
 ```
 
 ## What's Included

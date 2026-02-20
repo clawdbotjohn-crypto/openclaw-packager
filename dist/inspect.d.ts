@@ -1,5 +1,5 @@
 /**
- * Inspect command for openclaw-backup
+ * Inspect command for openclaw-packager
  */
 export interface InspectOptions {
 }

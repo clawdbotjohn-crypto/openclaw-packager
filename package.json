@@ -1,10 +1,10 @@
 {
-  "name": "openclaw-backup",
+  "name": "openclaw-packager",
   "version": "0.1.0",
   "description": "Export and import OpenClaw bot configurations",
   "main": "dist/index.js",
   "bin": {
-    "openclaw-backup": "./dist/index.js"
+    "openclaw-packager": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc",

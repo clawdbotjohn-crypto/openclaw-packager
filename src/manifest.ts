@@ -1,5 +1,5 @@
 /**
- * Manifest types and validation for openclaw-backup exports
+ * Manifest types and validation for openclaw-packager exports
  */
 
 export interface ManifestIncludes {
@@ -38,7 +38,7 @@ export interface Manifest {
 export function createManifest(overrides: Partial<Manifest> = {}): Manifest {
   return {
     version: '1.0.0',
-    tool: 'openclaw-backup',
+    tool: 'openclaw-packager',
     exportedAt: new Date().toISOString(),
     platform: `${process.platform}-${process.arch}`,
     nodeVersion: process.version,
@@ -72,7 +72,7 @@ export function validateManifest(data: unknown): data is Manifest {
   
   return (
     typeof m.version === 'string' &&
-    m.tool === 'openclaw-backup' &&
+    m.tool === 'openclaw-packager' &&
     typeof m.exportedAt === 'string' &&
     typeof m.includes === 'object' &&
     m.includes !== null

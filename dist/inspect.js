@@ -1,6 +1,6 @@
 "use strict";
 /**
- * Inspect command for openclaw-backup
+ * Inspect command for openclaw-packager
  */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -69,7 +69,7 @@ async function runInspect(file, options) {
     // Look for manifest
     const manifestEntry = zip.getEntry('manifest.json');
     if (!manifestEntry) {
-        logger.error(chalk_1.default.red('✗ Not a valid openclaw-backup export'));
+        logger.error(chalk_1.default.red('✗ Not a valid openclaw-packager export'));
         logger.error('  Missing manifest.json');
         process.exit(1);
     }

@@ -1,10 +1,10 @@
-# openclaw-backup — OpenClaw Export/Import CLI Tool
+# openclaw-packager — OpenClaw Export/Import CLI Tool
 
 ## Overview
 A standalone npm CLI tool for exporting and importing OpenClaw bot configurations. Allows migration between machines, disaster recovery, and sharing setups (with secrets stripped).
 
-**Package name:** `openclaw-backup`
-**Install:** `npm install -g openclaw-backup`
+**Package name:** `openclaw-packager`
+**Install:** `npm install -g openclaw-packager`
 **Runtime:** Node.js (TypeScript compiled to JS)
 **Output format:** .zip (standard zip, contains manifest.json)
 
@@ -14,7 +14,7 @@ A standalone npm CLI tool for exporting and importing OpenClaw bot configuration
 
 ### Export
 ```bash
-openclaw-backup export [options]
+openclaw-packager export [options]
 ```
 
 **Flags:**
@@ -33,14 +33,14 @@ openclaw-backup export [options]
 | `--no-config` | - | Exclude config |
 | `--no-agents` | - | Exclude agents |
 | `--no-memory` | - | Exclude memory |
-| `--stdout` | false | Write zip to stdout (for SSH piping: `ssh pi "openclaw-backup export --stdout" > backup.zip`) |
+| `--stdout` | false | Write zip to stdout (for SSH piping: `ssh pi "openclaw-packager export --stdout" > backup.zip`) |
 | `--dry-run` | false | Show what would be exported without creating file |
 
 **Default behavior (no flags):** Export everything EXCEPT auth/secrets. Safe to share.
 
 ### Import
 ```bash
-openclaw-backup import <file.zip> [options]
+openclaw-packager import <file.zip> [options]
 ```
 
 **Flags:**
@@ -55,7 +55,7 @@ openclaw-backup import <file.zip> [options]
 | `--skip-config` | false | Skip config during import |
 
 **Import flow:**
-1. Validate zip has manifest.json (reject if not an openclaw-backup export)
+1. Validate zip has manifest.json (reject if not an openclaw-packager export)
 2. Read manifest, show summary of contents
 3. Detect existing ~/.openclaw (fresh install vs existing)
 4. If --dry-run: print diff summary and exit
@@ -65,7 +65,7 @@ openclaw-backup import <file.zip> [options]
 
 ### Inspect
 ```bash
-openclaw-backup inspect <file.zip>
+openclaw-packager inspect <file.zip>
 ```
 Show contents of a backup without importing: manifest, what's included, file count, size, whether secrets are present.
 
@@ -123,7 +123,7 @@ Every export includes this at the root of the zip:
 ```json
 {
   "version": "1.0.0",
-  "tool": "openclaw-backup",
+  "tool": "openclaw-packager",
   "exportedAt": "2026-02-20T19:45:00Z",
   "openclawVersion": "2026.2.15",
   "platform": "linux-arm64",
@@ -164,7 +164,7 @@ When `--include-secrets` is NOT set (default), scan all JSON files for sensitive
 **SECRETS_TEMPLATE.json** (included in export when secrets are stripped):
 ```json
 {
-  "_instructions": "Fill in these values on your new machine. Run: openclaw-backup secrets <export.zip>",
+  "_instructions": "Fill in these values on your new machine. Run: openclaw-packager secrets <export.zip>",
   "config": {
     "channels.discord.token": "__OPENCLAW_SECRET__",
     "channels.telegram.token": "__OPENCLAW_SECRET__"
@@ -185,7 +185,7 @@ When `--include-secrets` is NOT set (default), scan all JSON files for sensitive
 ## Project Structure
 
 ```
-openclaw-backup/
+openclaw-packager/
 ├── package.json
 ├── tsconfig.json
 ├── README.md
@@ -213,10 +213,10 @@ openclaw-backup/
 **package.json bin:**
 ```json
 {
-  "name": "openclaw-backup",
+  "name": "openclaw-packager",
   "version": "0.1.0",
   "bin": {
-    "openclaw-backup": "./dist/index.js"
+    "openclaw-packager": "./dist/index.js"
   }
 }
 ```
@@ -252,7 +252,7 @@ Imported:
 ⚠️  Secrets not included. Fill in manually:
   - Discord bot token → openclaw.json channels.discord.token
   - GitHub Copilot auth → agents/main/agent/auth-profiles.json
-  - Run: openclaw-backup secrets backup.zip  (shows full list)
+  - Run: openclaw-packager secrets backup.zip  (shows full list)
 
 Next steps:
   1. Fill in API keys/tokens listed above
@@ -266,14 +266,14 @@ Next steps:
 
 Build and test locally before publishing:
 ```bash
-cd openclaw-backup
+cd openclaw-packager
 npm run build
-npm link                    # Makes 'openclaw-backup' available globally
-openclaw-backup export --dry-run
-openclaw-backup export -o test-backup.zip
-openclaw-backup inspect test-backup.zip
+npm link                    # Makes 'openclaw-packager' available globally
+openclaw-packager export --dry-run
+openclaw-packager export -o test-backup.zip
+openclaw-packager inspect test-backup.zip
 # Then test import on a temp directory:
-openclaw-backup import test-backup.zip --target /tmp/test-openclaw --dry-run
+openclaw-packager import test-backup.zip --target /tmp/test-openclaw --dry-run
 ```
 
 ---
@@ -291,7 +291,7 @@ openclaw-backup import test-backup.zip --target /tmp/test-openclaw --dry-run
 - [x] SECRETS_TEMPLATE.json generation
 
 **Nice to have (v0.2+):**
-- [ ] `openclaw-backup secrets <file.zip>` — interactive secrets fill-in
+- [ ] `openclaw-packager secrets <file.zip>` — interactive secrets fill-in
 - [ ] .claw file extension option
 - [ ] Diff view on import (show exactly what would change)
 - [ ] Scheduled auto-export via cron

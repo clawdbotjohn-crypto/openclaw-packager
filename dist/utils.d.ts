@@ -1,5 +1,5 @@
 /**
- * Shared utilities for openclaw-backup
+ * Shared utilities for openclaw-packager
  */
 import * as fs from 'fs';
 /**

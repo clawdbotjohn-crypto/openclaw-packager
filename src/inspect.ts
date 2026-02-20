@@ -1,5 +1,5 @@
 /**
- * Inspect command for openclaw-backup
+ * Inspect command for openclaw-packager
  */
 
 import * as fs from 'fs';
@@ -39,7 +39,7 @@ export async function runInspect(file: string, options: InspectOptions): Promise
   // Look for manifest
   const manifestEntry = zip.getEntry('manifest.json');
   if (!manifestEntry) {
-    logger.error(chalk.red('✗ Not a valid openclaw-backup export'));
+    logger.error(chalk.red('✗ Not a valid openclaw-packager export'));
     logger.error('  Missing manifest.json');
     process.exit(1);
   }

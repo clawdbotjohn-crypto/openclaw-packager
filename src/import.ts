@@ -1,5 +1,5 @@
 /**
- * Import command for openclaw-backup
+ * Import command for openclaw-packager
  */
 
 import * as fs from 'fs';
@@ -54,8 +54,8 @@ export async function runImport(file: string, options: ImportOptions): Promise<v
   // Validate manifest
   const manifestEntry = zip.getEntry('manifest.json');
   if (!manifestEntry) {
-    logger.error(chalk.red('✗ Not a valid openclaw-backup export'));
-    logger.error('  Missing manifest.json - this file was not created by openclaw-backup');
+    logger.error(chalk.red('✗ Not a valid openclaw-packager export'));
+    logger.error('  Missing manifest.json - this file was not created by openclaw-packager');
     process.exit(1);
   }
   

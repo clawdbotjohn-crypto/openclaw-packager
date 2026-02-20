@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 "use strict";
 /**
- * openclaw-backup - Export and import OpenClaw bot configurations
+ * openclaw-packager - Export and import OpenClaw bot configurations
  */
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -14,7 +14,7 @@ const import_1 = require("./import");
 const inspect_1 = require("./inspect");
 const program = new commander_1.Command();
 program
-    .name('openclaw-backup')
+    .name('openclaw-packager')
     .description('Export and import OpenClaw bot configurations')
     .version('0.1.0');
 // Export command

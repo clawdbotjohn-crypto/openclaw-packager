@@ -1,6 +1,6 @@
 "use strict";
 /**
- * Secret detection and stripping for openclaw-backup
+ * Secret detection and stripping for openclaw-packager
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isSecretFile = isSecretFile;

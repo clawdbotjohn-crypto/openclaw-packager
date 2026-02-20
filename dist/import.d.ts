@@ -1,5 +1,5 @@
 /**
- * Import command for openclaw-backup
+ * Import command for openclaw-packager
  */
 export interface ImportOptions {
     dryRun?: boolean;
